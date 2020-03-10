@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>03-low-density/commands/Reroute-32</title>
+    <desc>Created with Sketch.</desc>
+    <g id="03-low-density/commands/Reroute-32" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Shape" fill="#666666" fill-rule="nonzero" points="0 23.5 12.75 15 9 22 17 23.5 4.25 32 8 25"></polygon>
+        <g id="Group-10" transform="translate(16.160155, 16.500000) rotate(-45.000000) translate(-16.160155, -16.500000) translate(14.160155, 3.000000)" fill="#008DE9">
+            <rect id="Rectangle-Copy-6" transform="translate(2.250000, 1.750000) rotate(90.000000) translate(-2.250000, -1.750000) " x="1" y="0" width="2.5" height="3.5"></rect>
+            <rect id="Rectangle-Copy-11" transform="translate(2.250000, 5.750000) rotate(90.000000) translate(-2.250000, -5.750000) " x="1" y="4" width="2.5" height="3.5"></rect>
+            <rect id="Rectangle-Copy-12" transform="translate(2.250000, 9.750000) rotate(90.000000) translate(-2.250000, -9.750000) " x="1" y="8" width="2.5" height="3.5"></rect>
+            <rect id="Rectangle-Copy-13" transform="translate(2.250000, 13.750000) rotate(90.000000) translate(-2.250000, -13.750000) " x="1" y="12" width="2.5" height="3.5"></rect>
+            <rect id="Rectangle-Copy-14" transform="translate(2.250000, 17.750000) rotate(90.000000) translate(-2.250000, -17.750000) " x="1" y="16" width="2.5" height="3.5"></rect>
+            <rect id="Rectangle-Copy-15" transform="translate(2.250000, 21.750000) rotate(90.000000) translate(-2.250000, -21.750000) " x="1" y="20" width="2.5" height="3.5"></rect>
+            <rect id="Rectangle-Copy-16" transform="translate(2.250000, 25.750000) rotate(90.000000) translate(-2.250000, -25.750000) " x="1" y="24" width="2.5" height="3.5"></rect>
+        </g>
+        <g id="Group" transform="translate(-1.000000, 0.000000)" fill-rule="nonzero">
+            <path d="M9.99647621,4.5 C9.99647621,6.984 7.98176193,9 5.49647621,9 L5.49647621,9 C3.0111905,9 0.996476212,6.984 0.996476212,4.5 L0.996476212,4.5 C0.996476212,2.016 3.0111905,0 5.49647621,0 L5.49647621,0 C7.98176193,0 9.99647621,2.016 9.99647621,4.5 L9.99647621,4.5 Z" id="Shape" fill="#14B44E"></path>
+            <path d="M5.5,1 C7.433,1 9,2.568 9,4.5 C9,6.432 7.433,8 5.5,8 C3.567,8 2,6.432 2,4.5 C2,2.568 3.567,1 5.5,1 L5.5,1 Z M5.5,0 C3.019,0 1,2.019 1,4.5 C1,6.981 3.019,9 5.5,9 C7.981,9 10,6.981 10,4.5 C10,2.019 7.981,0 5.5,0 L5.5,0 Z" id="Shape" fill="#000000" opacity="0.1"></path>
+        </g>
+        <g id="Group" transform="translate(22.000000, 23.000000)" fill-rule="nonzero">
+            <path d="M9.99647621,4.5 C9.99647621,6.984 7.98176193,9 5.49647621,9 L5.49647621,9 C3.0111905,9 0.996476212,6.984 0.996476212,4.5 L0.996476212,4.5 C0.996476212,2.016 3.0111905,0 5.49647621,0 L5.49647621,0 C7.98176193,0 9.99647621,2.016 9.99647621,4.5 L9.99647621,4.5 Z" id="Shape" fill="#14B44E"></path>
+            <path d="M5.5,1 C7.433,1 9,2.568 9,4.5 C9,6.432 7.433,8 5.5,8 C3.567,8 2,6.432 2,4.5 C2,2.568 3.567,1 5.5,1 L5.5,1 Z M5.5,0 C3.019,0 1,2.019 1,4.5 C1,6.981 3.019,9 5.5,9 C7.981,9 10,6.981 10,4.5 C10,2.019 7.981,0 5.5,0 L5.5,0 Z" id="Shape" fill="#000000" opacity="0.1"></path>
+        </g>
+        <g id="Group-2" transform="translate(21.198126, 7.677349) rotate(20.000000) translate(-21.198126, -7.677349) translate(10.698126, -0.322651)" fill="#333333" fill-rule="nonzero">
+            <polygon id="Shape" transform="translate(5.400187, 9.849434) rotate(14.000000) translate(-5.400187, -9.849434) " points="1.40018686 6.34943443 5.40018686 13.3494344 9.40018686 6.34943443"></polygon>
+            <path d="M12.9444172,15.4857518 L12.9444172,14.2857518 C16.4238111,14.2857518 19.2444172,11.4651457 19.2444172,7.98575181 C19.2444172,4.50635789 16.4238111,1.68575181 12.9444172,1.68575181 C9.46502324,1.68575181 6.64441717,4.50635789 6.64441717,7.98575181 L5.44441717,7.98575181 C5.44441717,3.84361619 8.80228154,0.48575181 12.9444172,0.48575181 C17.0865528,0.48575181 20.4444172,3.84361619 20.4444172,7.98575181 C20.4444172,12.1278874 17.0865528,15.4857518 12.9444172,15.4857518 Z" id="Oval-2" stroke="#333333"></path>
+        </g>
+    </g>
+</svg>

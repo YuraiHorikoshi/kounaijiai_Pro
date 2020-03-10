@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>DiffPairs</title>
+    <desc>Created with Sketch.</desc>
+    <g id="DiffPairs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polyline id="Line-4-Copy" stroke="#008DE9" stroke-width="3" stroke-linecap="square" points="22 8.5 21 8.5 18 13.5 8 13.5 5.5 8.5 4.5 8.5"></polyline>
+        <polyline id="Line-4-Copy-2" stroke="#008DE9" stroke-width="3" stroke-linecap="square" transform="translate(13.250000, 21.000000) scale(1, -1) translate(-13.250000, -21.000000) " points="22 18.5 21 18.5 18 23.5 8 23.5 5.5 18.5 4.5 18.5"></polyline>
+        <g id="Group-Copy-2" transform="translate(27.500000, 23.500000) scale(1, -1) translate(-27.500000, -23.500000) translate(23.000000, 19.000000)" fill-rule="nonzero">
+            <path d="M8,4.5 C8,6.432 6.433,8 4.5,8 L4.5,8 C2.567,8 1,6.432 1,4.5 L1,4.5 C1,2.568 2.567,1 4.5,1 L4.5,1 C6.433,1 8,2.568 8,4.5 L8,4.5 Z" id="Shape" fill="#6DA745"></path>
+            <path d="M4.5,1 C6.433,1 8,2.568 8,4.5 C8,6.432 6.433,8 4.5,8 C2.567,8 1,6.432 1,4.5 C1,2.568 2.567,1 4.5,1 L4.5,1 Z M4.5,0 C2.019,0 0,2.019 0,4.5 C0,6.981 2.019,9 4.5,9 C6.981,9 9,6.981 9,4.5 C9,2.019 6.981,0 4.5,0 L4.5,0 Z" id="Shape" fill="#4D8844"></path>
+        </g>
+        <g id="Group-Copy-4" transform="translate(27.500000, 8.500000) scale(1, -1) translate(-27.500000, -8.500000) translate(23.000000, 4.000000)" fill-rule="nonzero">
+            <path d="M8,4.5 C8,6.432 6.433,8 4.5,8 L4.5,8 C2.567,8 1,6.432 1,4.5 L1,4.5 C1,2.568 2.567,1 4.5,1 L4.5,1 C6.433,1 8,2.568 8,4.5 L8,4.5 Z" id="Shape" fill="#6DA745"></path>
+            <path d="M4.5,1 C6.433,1 8,2.568 8,4.5 C8,6.432 6.433,8 4.5,8 C2.567,8 1,6.432 1,4.5 C1,2.568 2.567,1 4.5,1 L4.5,1 Z M4.5,0 C2.019,0 0,2.019 0,4.5 C0,6.981 2.019,9 4.5,9 C6.981,9 9,6.981 9,4.5 C9,2.019 6.981,0 4.5,0 L4.5,0 Z" id="Shape" fill="#4D8844"></path>
+        </g>
+        <rect id="Rectangle" fill="#E52D2D" x="0" y="4.5" width="3" height="8"></rect>
+        <rect id="Rectangle-Copy" fill="#E52D2D" x="0" y="19.5" width="3" height="8"></rect>
+    </g>
+</svg>

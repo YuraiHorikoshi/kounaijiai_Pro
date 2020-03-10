@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ViaPatternAngleLeft</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ViaPatternAngleLeft" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(17.500000, 16.000000) scale(1, -1) translate(-17.500000, -16.000000) translate(3.000000, 0.000000)">
+            <path d="M19.5,4.5 L5.5,4.5" id="Line-4" stroke="#008DE9" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M15.5,16 L4.5,16" id="Line-4-Copy" stroke="#008DE9" stroke-width="3" stroke-linecap="square"></path>
+            <g id="Group-Copy-2" transform="translate(20.000000, 0.000000)" fill-rule="nonzero">
+                <path d="M8,4.5 C8,6.432 6.433,8 4.5,8 L4.5,8 C2.567,8 1,6.432 1,4.5 L1,4.5 C1,2.568 2.567,1 4.5,1 L4.5,1 C6.433,1 8,2.568 8,4.5 L8,4.5 Z" id="Shape" fill="#6DA745"></path>
+                <path d="M4.5,1 C6.433,1 8,2.568 8,4.5 C8,6.432 6.433,8 4.5,8 C2.567,8 1,6.432 1,4.5 C1,2.568 2.567,1 4.5,1 L4.5,1 Z M4.5,0 C2.019,0 0,2.019 0,4.5 C0,6.981 2.019,9 4.5,9 C6.981,9 9,6.981 9,4.5 C9,2.019 6.981,0 4.5,0 L4.5,0 Z" id="Shape" fill="#4D8844"></path>
+            </g>
+            <g id="Group-Copy-3" transform="translate(14.000000, 11.500000)" fill-rule="nonzero">
+                <path d="M8,4.5 C8,6.432 6.433,8 4.5,8 L4.5,8 C2.567,8 1,6.432 1,4.5 L1,4.5 C1,2.568 2.567,1 4.5,1 L4.5,1 C6.433,1 8,2.568 8,4.5 L8,4.5 Z" id="Shape" fill="#6DA745"></path>
+                <path d="M4.5,1 C6.433,1 8,2.568 8,4.5 C8,6.432 6.433,8 4.5,8 C2.567,8 1,6.432 1,4.5 C1,2.568 2.567,1 4.5,1 L4.5,1 Z M4.5,0 C2.019,0 0,2.019 0,4.5 C0,6.981 2.019,9 4.5,9 C6.981,9 9,6.981 9,4.5 C9,2.019 6.981,0 4.5,0 L4.5,0 Z" id="Shape" fill="#4D8844"></path>
+            </g>
+            <path d="M11.5,27.5 L0.5,27.5" id="Line-4-Copy-2" stroke="#008DE9" stroke-width="3" stroke-linecap="square"></path>
+            <g id="Group-Copy-4" transform="translate(8.000000, 23.000000)" fill-rule="nonzero">
+                <path d="M8,4.5 C8,6.432 6.433,8 4.5,8 L4.5,8 C2.567,8 1,6.432 1,4.5 L1,4.5 C1,2.568 2.567,1 4.5,1 L4.5,1 C6.433,1 8,2.568 8,4.5 L8,4.5 Z" id="Shape" fill="#6DA745"></path>
+                <path d="M4.5,1 C6.433,1 8,2.568 8,4.5 C8,6.432 6.433,8 4.5,8 C2.567,8 1,6.432 1,4.5 C1,2.568 2.567,1 4.5,1 L4.5,1 Z M4.5,0 C2.019,0 0,2.019 0,4.5 C0,6.981 2.019,9 4.5,9 C6.981,9 9,6.981 9,4.5 C9,2.019 6.981,0 4.5,0 L4.5,0 Z" id="Shape" fill="#4D8844"></path>
+            </g>
+            <path d="M1,16 L0,16" id="Line-2" stroke="#E52D2D" stroke-width="7" stroke-linecap="square"></path>
+            <path d="M1,4.5 L0,4.5" id="Line-2-Copy-2" stroke="#E52D2D" stroke-width="7" stroke-linecap="square"></path>
+            <path d="M1,27.5 L0,27.5" id="Line-2-Copy" stroke="#E52D2D" stroke-width="7" stroke-linecap="square"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,340 @@
+#usage "<b>Get a quote for PCB layout service from PCBLayout.com owned and operated by Royal Circuit Solutions</b>\n"
+       "<p>"
+       "<author>Author: support.eagle@autodesk.com</author>"
+
+// THIS PROGRAM IS PROVIDED AS IS AND WITHOUT WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED
+
+string onlinePriceURL = "https://api.pcblayout.com/v1/get-pricing?totalPins=";
+string designFileUploadUrl = "https://api.pcblayout.com/v1/upload-file";
+string pcbLayoutSiteUrl = "https://www.pcblayout.com/pcb-layout";
+string paymentUrl = "https://www.pcblayout.com/payment";
+
+int launchDialogWidth = 750;
+int launchDialogHeight = 500;
+int orderDialogWidth = 470;
+string dialogTitle = "PCB Quote Service";
+
+int GetPartPinCount(UL_PART P) {
+    int pins = 0;
+
+    if (P.device) {
+        if (P.device.package) {
+            P.device.package.contacts(C) {
+                pins++;
+            }
+        }
+        else {
+            // check for gates to get total pin count
+            P.device.gates(G) {
+                int c = 0;
+                int dir;
+
+                G.symbol.pins(PIN) {
+                    c++;
+                    dir = PIN.direction;
+                }
+
+                // do not consider supply pin like GND, +5V, etc
+                if (c == 1) {
+                    if (dir != PIN_DIRECTION_SUP) {
+                        pins += c;
+                    }
+                } else {
+                    pins += c;
+                }
+            }
+        }
+    }
+
+    return pins;
+}
+
+int pads = 0, smds = 0, totalCount = 0;
+string designSchFilePath = "", designBrdFilePath = "";
+
+if (schematic) {
+    schematic(SCH) {
+        designSchFilePath = SCH.name;
+
+        if (project.board) {
+            project.board(B) {
+                designBrdFilePath = B.name;
+            }
+        }
+
+        SCH.allparts(P) {
+            if (P.modulepart) {
+                totalCount += GetPartPinCount(P.modulepart);
+            }
+            else {
+                totalCount += GetPartPinCount(P);
+            }
+        }
+    }
+}
+else if(board) {
+    board(B) {
+        designBrdFilePath = B.name;
+
+        if (project.schematic) {
+            project.schematic(S) {
+                designSchFilePath = S.name;
+            }
+        }
+
+        B.elements(E) {
+            E.package.contacts(C) {
+                if (C.pad) {
+                    pads++;
+                    totalCount++;
+                }
+                else if (C.smd) {
+                    smds++;
+                    totalCount++;
+                }
+            }
+        }
+    }
+} else {
+    dlgMessageBox("\n    Start this ULP in a Schematic or Board    \n");
+    exit (0);
+}
+
+if (totalCount == 0) {
+    dlgDialog(dialogTitle) {
+        dlgHBoxLayout dlgSpacing(orderDialogWidth);
+        dlgGroup("Warning:") {
+            dlgLabel("There are no parts in the design.\nA quote for this design doesn't make sense yet!");
+        };
+        
+        dlgHBoxLayout {
+            dlgStretch(1);
+            dlgPushButton("Close") dlgReject();
+        };
+    };
+
+    exit (0);
+}
+
+string GetPriceQuote(int totalPins) {
+    string pinCount;
+    sprintf(pinCount, "%d", totalPins);
+
+    string result;
+    onlinePriceURL += pinCount;
+
+    if(netget(result, onlinePriceURL) < 0) {
+        dlgMessageBox(neterror());
+        return "";
+    }
+
+    return result;
+}
+
+// https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+int ValidateEmail(string email) {
+    string re = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+    return strxstr(email, re);
+}
+
+string SubmitOrder(string userFullName, string userEmail, int totalPins, string designSchFilePath, string designBrdFilePath) {
+    if (designSchFilePath == "" && designBrdFilePath == "") {
+        dlgMessageBox("\nMissing design file.\n");
+        return "";
+    }
+
+    if (userFullName == "") {
+        dlgMessageBox("\nPlease enter name.\n");
+        return "";
+    }
+
+    if (userEmail == "") {
+        dlgMessageBox("\nPlease enter email address.\n");
+        return "";
+    } else {
+        if(ValidateEmail(userEmail) < 0) {
+            dlgMessageBox("\nEmail address is incorrect.\n");
+            return "";
+        }
+    }
+
+    int lines;
+
+    // read schematic file
+    string schContent = "";
+    string schFileName = "";
+
+    if (designSchFilePath != "") {
+        lines = fileread(schContent, designSchFilePath);
+
+        if (lines == 0) {
+            dlgMessageBox("\:Please make sure the schematic file is saved and exists in the system.");
+            return "";
+        }
+
+        schFileName = filesetext(filename(designSchFilePath), "");
+    }
+
+    // read board file
+    string brdContent = "";
+    string brdFileName = "";
+
+    if (designBrdFilePath != "") {
+        lines = fileread(brdContent, designBrdFilePath);
+
+        if (lines == 0) {
+            dlgMessageBox("\:Please make sure the board file is saved and exists in the system.");
+            return "";
+        }
+
+        brdFileName = filesetext(filename(designBrdFilePath), "");
+    }
+
+    // Upload content
+    string pinCount;
+    sprintf(pinCount, "%d", totalPins);
+
+    string response;
+    string data = "<body>"
+                + "<sch>" + schContent + "</sch>"
+                + "<schfilename>" + schFileName + "</schfilename>"
+                + "<brd>" + brdContent + "</brd>"
+                + "<brdfilename>" + brdFileName + "</brdfilename>"
+                + "<user>"
+                + "<name>" + userFullName + "</name>"
+                + "<email>" + userEmail + "</email>"
+                + "</user>"
+                + "<pinCount>" + pinCount + "</pinCount>"
+                + "</body>";
+
+    if(netpost(response, designFileUploadUrl, data) < 0) {
+        dlgMessageBox(neterror());
+        return "";
+    }
+
+    return  xmltext(response, "confirmationNum");
+}
+
+int stat;
+
+// Launch page HTML
+string startPageContentHTML = "<html>\
+                            <head>\
+                            </head>\
+                            <body>\
+                            <center>\
+                              <img src=\"PCBLayout_Logo.png\">\
+                            </center>\
+                            <p>\
+                            PCB Quote is a new offering from PCBLayout.com -- a full-service PCB layout & turn-key manufacturing company owned and operated by Royal Circuit Solutions, located in Silicon Valley, California. Start by getting your components placed and boards routed by PCBLayout.com's professional layout engineering team! We'll deliver all the files needed to manufacture your design. We can even build and populate your boards via our fabrication and assembly facilities located in the US! Click the <strong>Quote</strong> button below to receive an instant quote!\
+                            </p>\
+                            <center>\
+                              <img src=\"PCBLayout_Service.png\">\
+                            </center>\
+                            <small><p><i>Use of this service requires transmitting your design information to a third-party service. Although we attempt to protect the privacy & security of your data, Autodesk does not guarantee the security of information shared with third-party service providers. Use of this service is governed by the privacy policies of the third party provider which may differ from Autodesk's privacy policy. Please contact PCBLayout.com or Royal Circuit Solutions, Inc. for details of their privacy policy.\
+                            </p></i></small>\
+                            </body>\
+                            </html>";
+
+stat = dlgDialog(dialogTitle) {
+    dlgHBoxLayout dlgSpacing(launchDialogWidth);
+    dlgHBoxLayout {
+        dlgTextView(startPageContentHTML);
+        dlgVBoxLayout dlgSpacing(launchDialogHeight);
+    }
+
+    dlgHBoxLayout {
+        dlgStretch(1);
+        dlgPushButton("+Quote") {
+            dlgAccept();
+        }
+        dlgStretch(1);
+    }
+};
+
+if (stat < 0) exit(0);
+
+string userFullName = "", userEmail = "", orderNo = "";
+int sendboardFile = 0;
+
+string priceQuoteInfo = GetPriceQuote(totalCount);
+
+if(priceQuoteInfo == "") {
+    exit(0);
+}
+
+// price quote details
+stat = dlgDialog(dialogTitle) {
+    dlgHBoxLayout dlgSpacing(orderDialogWidth);
+
+    dlgGroup("Design Info:")
+    dlgGridLayout {
+        string totalCountString;
+        sprintf(totalCountString, "%d", totalCount);
+
+        if (schematic) {
+            dlgCell(0, 0) dlgLabel("Total Number of Pins:"); dlgCell(0, 1) dlgLabel(totalCountString);
+        } else {
+            string padCountString, smdCountString;
+            sprintf(padCountString, "%d", pads);
+            sprintf(smdCountString, "%d", smds);
+
+            dlgCell(0, 0) dlgLabel("Number of PTH Pads:"); dlgCell(0, 1) dlgLabel(padCountString);
+            dlgCell(1, 0) dlgLabel("Number of SMD Pads:"); dlgCell(1, 1) dlgLabel(smdCountString);
+            dlgCell(2, 0) dlgLabel("Total Number of Pads:"); dlgCell(2, 1) dlgLabel(totalCountString);
+        }
+    }
+
+    dlgGroup("Quote Info:")
+    dlgGridLayout {
+        dlgCell(0, 0) dlgLabel("Total Price:"); dlgCell(0, 1) dlgLabel("$" + xmltext(priceQuoteInfo, "body/cost"));
+        dlgCell(1, 0) dlgLabel("Turn Time:"); dlgCell(1, 1) dlgLabel(xmltext(priceQuoteInfo, "body/turntime"));
+    }
+
+    dlgGroup("Enter Details To Place Order:")
+    dlgGridLayout {
+        dlgCell(0, 0) dlgLabel("Full Name:"); dlgCell(0, 1) dlgStringEdit(userFullName);
+        dlgCell(1, 0) dlgLabel("Email Address:"); dlgCell(1, 1) dlgStringEdit(userEmail);
+        dlgCell(2, 0) dlgLabel("Design File:");
+
+        if (schematic) {
+            dlgCell(2, 1) dlgLabel(filename(designSchFilePath));
+
+            if (designBrdFilePath != "") {
+                dlgCell(3, 0) {
+                    dlgSpacing(60);
+                    dlgCheckBox("", sendboardFile);
+                }
+
+                dlgCell(3, 1) dlgLabel(filename(designBrdFilePath) + " (Select to include Board file)");
+            }
+        } else {
+            if (designSchFilePath != "") {
+                dlgCell(2, 1) dlgLabel(filename(designSchFilePath));
+                dlgCell(3, 1) dlgLabel(filename(designBrdFilePath));
+            } else {
+                dlgCell(2, 1) dlgLabel(filename(designBrdFilePath));
+            }
+        }
+    }
+
+    dlgHBoxLayout {
+        dlgStretch(1);
+        dlgPushButton("+Order") {
+            if (schematic) {
+                orderNo = SubmitOrder(userFullName, userEmail, totalCount, designSchFilePath, (sendboardFile ? designBrdFilePath : ""));
+            } else {
+                orderNo = SubmitOrder(userFullName, userEmail, totalCount, designSchFilePath, designBrdFilePath);
+            }
+            
+            if(orderNo != "") dlgAccept();
+        }
+        dlgStretch(1);
+    }
+};
+
+if (stat < 0) exit(0);
+
+if (orderNo != "") {
+    dlgMessageBox("Your order has been successfully submitted. Click <b><a href=\"" + paymentUrl + "?confirmationNum=" + orderNo + "\">here</b> to complete the order.");
+}

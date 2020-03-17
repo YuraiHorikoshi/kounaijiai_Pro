@@ -156,7 +156,45 @@ void motor2(int dire,int duty)//第三モーター
 
 
 }
+inline int SW1()
+{
+return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_6);
+}
 
+inline int SW2()
+{
+return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5);
+}
+
+inline int SW3()
+{
+return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_3);
+}
+
+inline int SW4()
+{
+return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_4);
+}
+
+inline int SW5()
+{
+return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_7);
+}
+
+inline int SW6()
+{
+return 	HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_0);
+}
+
+inline int SW7()
+{
+return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_12);
+}
+
+inline int SW8()
+{
+return 	HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_1);
+}
 
 /* USER CODE END 0 */
 
@@ -167,45 +205,7 @@ void motor2(int dire,int duty)//第三モーター
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	inline int SW1()
-	{
-	return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_6);
-	}
 
-	inline int SW2()
-	{
-	return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5);
-	}
-
-	inline int SW3()
-	{
-	return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_3);
-	}
-
-	inline int SW4()
-	{
-	return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_4);
-	}
-
-	inline int SW5()
-	{
-	return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_7);
-	}
-
-	inline int SW6()
-	{
-	return 	HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_0);
-	}
-
-	inline int SW7()
-	{
-	return 	HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_12);
-	}
-
-	inline int SW8()
-	{
-	return 	HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_1);
-	}
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -233,11 +233,45 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  	  while (1)
+  	  {
+
+	  switch(SW1()){
+	  case 0 : motor2(1,20);break;
+	  case 1 : motor2(2,0);break;
+	  }
+	  switch(SW2()){
+	  case 0 : motor1(0,20);;break;
+	  case 1 : motor1(2,0);break;
+	  }
+	  switch(SW3()){
+	  case 0 : motor1(1,20);break;
+	  case 1 : motor1(2,0);break;
+	  }
+	  switch(SW4()){
+	  case 0 : motor1(1,20);break;
+	  case 1 : motor1(2,0);break;
+	  }
+	  switch(SW5()){
+	  case 0 : motor1(1,20);break;
+	  case 1 : motor1(2,0);break;
+	  }
+	  switch(SW6()){
+	  case 0 : motor3(0,20);break;
+	  case 1 : motor3(2,0);break;
+	  }
+	  switch(SW7()){
+	  case 0 : motor2(0,20);break;
+	  case 1 : motor2(2,0);break;
+	  }
+	  switch(SW8()){
+	  case 0 : motor3(1,20);break;
+	  case 1 : motor3(2,0);break;
+	  }
+	  HAL_Delay(10);
 
 	 //motor1の挙動 ?��?右
-	 	  if(SW4()==0)
+	 	/*  if(SW4()==0)
 	 	  	  {
 	 	  		  //printf("sw4\n");
 	 	  		 motor1(1,20);
@@ -281,11 +315,8 @@ int main(void)
 	 	  	   else{
 	 	  		   motor2(2,0);
 	 	  	   }
-
-	 	  HAL_Delay(10);
-
-
-	 	    }
+*/
+  	  }
 
     /* USER CODE END WHILE */
 
